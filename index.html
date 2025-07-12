@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>대화형 삼각함수 교실</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대화형 삼각함수 교실</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-600">대화형 삼각함수 교실</h1>
+            <p class="text-lg text-gray-600 mt-2">단위 원과 그래프를 통해 삼각함수를 정복해 보세요!</p>
+        </header>
+
+        <main>
+            <!-- 대화형 학습 섹션 -->
+            <section id="interactive-section" class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2">1. 대화형 단위 원과 그래프</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- 단위 원 -->
+                    <div class="unit-circle-container text-center">
+                        <canvas id="unitCircleCanvas" width="350" height="350"></canvas>
+                        <div id="values-display" class="mt-4 p-4 bg-blue-50 rounded-lg text-lg">
+                            <p><strong>각도:</strong> <span id="angle-display" class="font-mono text-blue-700">0°</span></p>
+                            <p><strong>sin(θ):</strong> <span id="sin-value" class="font-mono text-green-600">0.00</span></p>
+                            <p><strong>cos(θ):</strong> <span id="cos-value" class="font-mono text-red-600">1.00</span></p>
+                            <p><strong>tan(θ):</strong> <span id="tan-value" class="font-mono text-purple-600">0.00</span></p>
+                        </div>
+                    </div>
+                    <!-- 그래프 -->
+                    <div class="graph-container">
+                        <canvas id="graphCanvas" width="400" height="300"></canvas>
+                        <div class="controls mt-4 text-center">
+                            <label for="angle-slider" class="block mb-2 font-semibold">각도 조절 (0° ~ 360°):</label>
+                            <input type="range" id="angle-slider" min="0" max="360" value="0" class="w-full">
+                            <div class="function-buttons mt-4">
+                                <button data-func="sin" class="func-btn active bg-green-500 hover:bg-green-600">sin(x)</button>
+                                <button data-func="cos" class="func-btn bg-red-500 hover:bg-red-600">cos(x)</button>
+                                <button data-func="tan" class="func-btn bg-purple-500 hover:bg-purple-600">tan(x)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 개념 정리 섹션 -->
+            <section id="concepts-section" class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2">2. 핵심 개념 정리</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="concept-card bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-xl text-green-700">사인 (Sine)</h3>
+                        <p>단위 원 위의 점 P(x, y)에 대해, 동경 OP가 나타내는 각을 θ라 할 때, <strong>sin(θ) = y</strong> 입니다. (높이)</p>
+                        <p class="mt-2"><strong>주기:</strong> 2π, <strong>최댓값:</strong> 1, <strong>최솟값:</strong> -1</p>
+                    </div>
+                    <div class="concept-card bg-red-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-xl text-red-700">코사인 (Cosine)</h3>
+                        <p>단위 원 위의 점 P(x, y)에 대해, 동경 OP가 나타내는 각을 θ라 할 때, <strong>cos(θ) = x</strong> 입니다. (밑변)</p>
+                        <p class="mt-2"><strong>주기:</strong> 2π, <strong>최댓값:</strong> 1, <strong>최솟값:</strong> -1</p>
+                    </div>
+                    <div class="concept-card bg-purple-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-xl text-purple-700">탄젠트 (Tangent)</h3>
+                        <p><strong>tan(θ) = y/x</strong> 입니다. (기울기)</p>
+                        <p class="mt-2"><strong>주기:</strong> π, <strong>점근선:</strong> x = nπ + π/2</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 퀴즈 섹션 -->
+            <section id="quiz-section" class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2">3. 실력 점검 퀴즈</h2>
+                <div id="quiz-container">
+                    <!-- 퀴즈 질문이 여기에 동적으로 추가됩니다. -->
+                </div>
+                <div class="text-center mt-6">
+                    <button id="submit-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">결과 확인</button>
+                </div>
+                <div id="quiz-result" class="mt-4 text-center text-xl font-bold"></div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500">
+            <p>&copy; 2024 Interactive Math Classroom. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
